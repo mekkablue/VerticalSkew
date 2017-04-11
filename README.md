@@ -24,7 +24,7 @@ The plugin has only been tested for Glyphs 2.4.x on macOS Sierra. It may not wor
 
 ### License
 
-Copyright 2017 Rainer Erich Scheichelbauer (@mekkablue), idea by Luisa Baeta and Matteo Bologna.
+Copyright 2017 Rainer Erich Scheichelbauer (@mekkablue).
 Based on sample code by Georg Seifert (@schriftgestalt) and Jan Gerner (@yanone).
 
 Licensed under the Apache License, Version 2.0 (the "License");
