@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment version="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="VerticalSkew">
+            <connections>
+                <outlet property="dialog" destination="1" id="eFL-zq-5gr"/>
+                <outlet property="downButton" destination="hCf-uk-yi5" id="8R2-ez-Ob6"/>
+                <outlet property="textField" destination="zaJ-mO-u7m" id="cXg-1k-JIA"/>
+                <outlet property="upButton" destination="to5-X7-sAO" id="Ztb-pN-I9Y"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView misplaced="YES" id="1" customClass="GSPaletteView">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="39"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" misplaced="YES" id="to5-X7-sAO">
+                    <rect key="frame" x="12" y="7" width="24" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="⥯" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bPG-EL-nog">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name="Cambria"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="upScale:" target="-2" id="fVI-gr-HPC"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" misplaced="YES" id="hCf-uk-yi5">
+                    <rect key="frame" x="117" y="7" width="24" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="⥮" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1M2-Jp-TMa">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name="Cambria"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="downScale:" target="-2" id="9nB-yn-q7B"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" misplaced="YES" id="zaJ-mO-u7m" customClass="GSSteppingTextField">
+                    <rect key="frame" x="45" y="9" width="64" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" toolTip="Shearing angle in degrees" title="5°" placeholderString="degrees" drawsBackground="YES" id="zAP-lE-Zyv">
+                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#.#°" negativeFormat="-#.#°" generatesDecimalNumbers="YES" usesGroupingSeparator="NO" lenient="YES" paddingPosition="beforeSuffix" paddingCharacter=" " roundingMode="halfUp" groupingSize="0" secondaryGroupingSize="1" minimumIntegerDigits="1" maximumIntegerDigits="2" maximumFractionDigits="3" id="0X4-Zr-B8S">
+                            <integer key="multiplier" value="1"/>
+                            <real key="minimum" value="1"/>
+                            <real key="maximum" value="89"/>
+                        </numberFormatter>
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <action selector="selectText:" target="-1" id="N28-Tb-J0v"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="_controller" destination="-2" id="jOT-R9-oyt"/>
+            </connections>
+            <point key="canvasLocation" x="117" y="93"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="GFb-sk-lqF"/>
+    </objects>
+</document>
