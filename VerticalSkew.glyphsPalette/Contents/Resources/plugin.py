@@ -28,6 +28,8 @@ class VerticalSkew (PalettePlugin):
 			'de': u'Vertikal neigen'
 		})
 		
+		self.dialogName = self.name
+		
 		# Load .nib dialog (without .extension)
 		self.loadNib('IBdialog', __file__)
 	
