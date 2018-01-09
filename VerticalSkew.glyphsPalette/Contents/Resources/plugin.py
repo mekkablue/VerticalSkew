@@ -11,7 +11,8 @@
 #
 ###########################################################################################################
 
-
+import objc
+from GlyphsApp import *
 from GlyphsApp.plugins import *
 import math
 
@@ -36,8 +37,7 @@ class VerticalSkew (PalettePlugin):
 	def start(self):
 		# Adding a callback for the 'GSUpdateInterface' event
 		# Glyphs.addCallback(self.update, UPDATEINTERFACE)
-		if Glyphs.defaults['com.mekkablue.VerticalSkew.angle'] is None:
-			Glyphs.defaults['com.mekkablue.VerticalSkew.angle'] = 5.0
+		Glyphs.registerDefault('com.mekkablue.VerticalSkew.angle', 5.0)
 		self.textField.setFloatValue_(float(Glyphs.defaults['com.mekkablue.VerticalSkew.angle']))
 	
 	def __del__(self):
@@ -45,25 +45,15 @@ class VerticalSkew (PalettePlugin):
 		#Glyphs.removeCallback(self.update)
 	
 	def transform( self, skew=0.0, origin=NSZeroPoint ):
-		try:
-			myTransform = NSAffineTransform.transform()
-			myTransform.shearYBy_atCenter_(math.radians(skew), -origin.x)
-			return myTransform
-		except Exception as e:
-			import traceback
-			print traceback.format_exc()
-			return None
+		myTransform = NSAffineTransform.transform()
+		myTransform.shearYBy_atCenter_(math.radians(skew), -origin.x)
+		return myTransform
 
 	# Action triggered by UI
 	@objc.IBAction
 	def setAngle_( self, sender ):
-		try:
-			# Store angle coming in from dialog
-			Glyphs.defaults['com.mekkablue.VerticalSkew.angle'] = sender.floatValue()
-		except Exception as e:
-			print e
-			import traceback
-			print traceback.format_exc()
+		# Store angle coming in from dialog
+		Glyphs.defaults['com.mekkablue.VerticalSkew.angle'] = sender.floatValue()
 		
 	# Action triggered by UI
 	@objc.IBAction
@@ -101,44 +91,37 @@ class VerticalSkew (PalettePlugin):
 		return NSPoint(pivotX,0.0)
 	
 	def verticalSkew( self, font, angle ):
-		try:
-			if font:
-				layers = font.selectedLayers
-				
-				# mutiple layers (or no selection):
-				if len(layers) > 1 or (len(layers)==1 and len(layers[0].selection)==0):
-					for thisLayer in layers:
-						transformOrigin = self.transformOrigin(thisLayer.bounds)
-						layerTransform = self.transform(skew=angle, origin=transformOrigin)
-						matrix = layerTransform.transformStruct()
-						thisLayer.applyTransform(matrix)
-						
-				# selection in a single layer:
-				elif len(layers) == 1 and layers[0].selection:
-					thisLayer = layers[0]
-					transformOrigin = self.transformOrigin(thisLayer.selectionBounds)
-					selectionTransform = self.transform(skew=angle, origin=transformOrigin)
-					
-					for thisItem in thisLayer.selection:
-						if type(thisItem) == GSComponent:
-							matrix = selectionTransform.transformStruct()
-							thisItem.applyTransform(matrix)
-						else:
-							try:
-								thisItem.position = selectionTransform.transformPoint_(thisItem.position)
-							except:
-								pass
-				
-		except Exception as e:
-			import traceback
-			print traceback.format_exc()
-			print e
+		if font:
+			layers = font.selectedLayers
 			
-
+			# mutiple layers (or no selection):
+			if len(layers) > 1 or (len(layers)==1 and len(layers[0].selection)==0):
+				for thisLayer in layers:
+					transformOrigin = self.transformOrigin(thisLayer.bounds)
+					layerTransform = self.transform(skew=angle, origin=transformOrigin)
+					matrix = layerTransform.transformStruct()
+					thisLayer.applyTransform(matrix)
+					
+			# selection in a single layer:
+			elif len(layers) == 1 and layers[0].selection:
+				thisLayer = layers[0]
+				transformOrigin = self.transformOrigin(thisLayer.selectionBounds)
+				selectionTransform = self.transform(skew=angle, origin=transformOrigin)
+				
+				for thisItem in thisLayer.selection:
+					if type(thisItem) == GSComponent:
+						matrix = selectionTransform.transformStruct()
+						thisItem.applyTransform(matrix)
+					else:
+						try:
+							thisItem.position = selectionTransform.transformPoint_(thisItem.position)
+						except:
+							pass
 	
 	def __file__(self):
 		"""Please leave this method unchanged"""
 		return __file__
+	
 	_sortID = 41
 	def setSortID_(self, id):
 		try:
