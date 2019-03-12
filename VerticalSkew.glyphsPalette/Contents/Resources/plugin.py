@@ -32,6 +32,10 @@ class VerticalSkew (PalettePlugin):
 		
 		self.dialogName = self.name
 		
+		# if user never triggered a transform origin in the Transformations palette:
+		if Glyphs.defaults["GSTransformationsMetricsOriginType"] is None:
+			Glyphs.defaults["GSTransformationsMetricsOriginType"] = 0
+		
 		# Load .nib dialog (without .extension)
 		self.loadNib('IBdialog', __file__)
 	
