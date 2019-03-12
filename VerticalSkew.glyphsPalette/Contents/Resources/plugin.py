@@ -14,6 +14,7 @@
 import objc
 from GlyphsApp import *
 from GlyphsApp.plugins import *
+from GlyphsApp import GSBottomLeft, GSCenterLeft, GSTopLeft, GSBottomRight, GSCenterRight, GSTopRight
 import math
 
 class VerticalSkew (PalettePlugin):
