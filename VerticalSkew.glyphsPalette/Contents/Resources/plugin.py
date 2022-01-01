@@ -51,7 +51,7 @@ class VerticalSkew (PalettePlugin):
 	
 	def transform( self, skew=0.0, origin=NSZeroPoint ):
 		myTransform = NSAffineTransform.transform()
-		myTransform.shearYBy_atCenter_(math.radians(skew), -origin.x)
+		myTransform.shearYBy_atCenter_(math.tan(math.radians(skew)), -origin.x)
 		return myTransform
 
 	# Action triggered by UI
